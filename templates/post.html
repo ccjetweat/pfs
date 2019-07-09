@@ -1,0 +1,68 @@
+{% extends 'base.html' %}
+
+{% block main_content %}
+{# 存放表单 #}
+<div class="row">
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <h4>问题反馈</h4>
+        </div>
+        <div class="panel-body">
+            <form class="form-horizontal" action="{{ url_for('post_feedback') }}" method="post">
+                <!-- 主题 -->
+                <div class="form-group">
+                    <label class="control-label col-md-2" for="subject">主题</label>
+                    <div class="col-md-6">
+                        <input id="subject" class="form-control" type="text"  name="subject">
+                    </div>
+                </div>
+                <!-- 分类 -->
+                <div class="form-group">
+                    <label class="control-label col-md-2" for="category">分类</label>
+                    <div class="col-md-4">
+                        <select id="category" class="form-control" name="category">
+                            {% for category in categories %}
+                            <option value="{{ category[0] }}">{{ category[1] }}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                </div>
+                <!-- 姓名 -->
+                <div class="form-group">
+                    <label class="control-label col-md-2" for="username">姓名</label>
+                    <div class="col-md-4">
+                        <input type="text" class="form-control" id="username" name="username">
+                    </div>
+                </div>
+                <!-- 邮箱 -->
+                <div class="form-group">
+                    <label class="control-label col-md-2" for="email">邮箱</label>
+                    <div class="col-md-4">
+                        <input type="text" class="form-control" id="email" name="email">
+                    </div>
+                </div>
+                <!-- 图片 -->
+                <div class="form-group">
+                    <label for="picture" class="control-label col-md-2">图片</label>
+                    <div class="col-md-4">
+                        <input class="form-control" type="file" id="image" name="image">
+                    </div>
+                </div>
+                <!-- 上传内容 -->
+                <div class="form-group">
+                    <label for="body" class="control-label col-md-2">内容</label>
+                    <div class="col-md-6">
+                        <textarea name="body" id="body" cols="30" rows="10" class="form-control"></textarea>
+                    </div>
+                </div>
+                <!-- 提交按钮 -->
+                <div class="col-md-offset-2">
+                    <input type="submit" class="btn btn-primary" name="submit" value="提交">
+                    <input type="reset" class="btn btn-default" name="reset" value="重置">
+                </div>
+            </form>
+        </div>
+        <div class="panel-footer"></div>
+    </div>
+</div>
+{% endblock %}
